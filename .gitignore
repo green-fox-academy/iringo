@@ -1,6 +1,6 @@
-.idea
-out
+.idea/
+out/
 *.iml
 *.xml
 *.class
-.DS_Store
+.DS_Store/
