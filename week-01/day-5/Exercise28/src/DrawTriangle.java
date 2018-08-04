@@ -21,7 +21,7 @@ public class DrawTriangle {
 
 
 
-        for (int i = 0; i <= userInput; i++) {
+        for (int i = 1; i <= userInput; i++) {
             for (int j = 0; j < i; j++) {
                 System.out.print("*");
             }
