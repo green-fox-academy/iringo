@@ -26,7 +26,15 @@ public class DrawSquare {
 
         for (int i = 1; i <= userInput; i++) {
 
-            for (int j = 1; j <= userInput; j++) {
+            if (i == 1 || i == userInput) {
+                for (int j = 1; j <= userInput; j++) {
+                    System.out.print("%");
+                }
+            } else if (i != 1 || i != userInput) {
+                System.out.print("%");
+                for (int k = 1; k <= (userInput - 2); k++) {
+                    System.out.print(" ");
+                }
                 System.out.print("%");
             }
 
