@@ -12,21 +12,22 @@ public class ParametricAverage {
         // Sum: 22, Average: 4.4
 
         Scanner name = new Scanner(System.in);
+        System.out.println("Please give me a number: ");
         int userInput = name.nextInt();
-        int i = 0;
-
-        while (i < userInput) {
-
-            for (int j= 1; j < userInput; j++) {
-
-                int userInput = name.nextInt();
+        int [] array = new int[userInput];
 
 
-            }
+        for (int i= 0; i < array.length; i++) {
+
+            System.out.println("Enter the number you wish to work with: ");
+            int number = name.nextInt();
+            array[i] = number;
+
         }
 
-
-
+        for (int row: array){
+            System.out.print(row);
+        }
 
     }
 
