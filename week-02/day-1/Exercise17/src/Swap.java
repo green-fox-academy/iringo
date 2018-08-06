@@ -1,0 +1,19 @@
+// - Create an array variable named `abc`
+//   with the following content: `["first", "second", "third"]`
+// - Swap the first and the third element of `abc`
+
+import java.util.Arrays;
+
+public class Swap {
+
+    public static void main(String[] args) {
+
+        String[] abc = new String[] {"first", "second", "third"};
+
+        String temp = abc[3];
+        abc[3] = abc[1];
+        abc[1] = temp;
+        System.out.println(Arrays.toString(abc));
+
+    }
+}
