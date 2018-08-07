@@ -13,7 +13,6 @@ public class Solarsystem {
         // Expected output: "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Uranus", "Neptune", "Saturn"
     }
 
-
     public static ArrayList putSaturn (ArrayList<String> list) {
        //list.add(7, "Saturn");
         list.add("Saturn");
