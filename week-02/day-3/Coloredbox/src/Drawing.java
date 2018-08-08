@@ -5,15 +5,10 @@ import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Drawing {
+    public static void mainDraw(Graphics graphics) {
+        // Draw a box that has different colored lines on each edge.
 
-    public static void mainDraw(Graphics graphics){
 
-        // draw a red horizontal line to the canvas' middle.
-        // draw a green vertical line to the canvas' middle.
-        graphics.setColor(Color.RED);
-        graphics.drawLine(10, 160, 310, 160);
-        graphics.setColor(Color.GREEN);
-        graphics.drawLine(160, 10, 160, 340);
 
     }
 
