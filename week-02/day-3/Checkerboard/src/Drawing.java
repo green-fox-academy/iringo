@@ -6,16 +6,22 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Drawing {
     public static void mainDraw(Graphics graphics) {
+        // Fill the canvas with a checkerboard pattern.
 
-        int x = 10;
-        int y = 10;
-        int size = 10;
+        int x = 0;
+        int y = 0;
+        int size = 32;
 
-        for (int i = 1; i < 19; i++) {
-            graphics.setColor(new Color(148, 0, 211));
-            graphics.fillRect(x, y, size, size);
-            x = x + size;
-            y = y + size;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                x = j * size;
+                y = i * size;
+                if ( (i % 2) == (j % 2) )
+                    graphics.setColor(Color.WHITE);
+                else
+                    graphics.setColor(Color.BLACK);
+                graphics.fillRect(x, y, size, size);
+            }
         }
     }
 

@@ -16,7 +16,7 @@ public class Drawing {
             graphics.fill3DRect(x, y, size, size, true);
             x = x + size;
             y = y + size;
-            size = size + 15;
+            size = size + 10;
         }
     }
 

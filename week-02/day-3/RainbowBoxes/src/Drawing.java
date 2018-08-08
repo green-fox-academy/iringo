@@ -1,7 +1,6 @@
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -12,25 +11,20 @@ public class Drawing {
         // and draws a square of that size and color to the center of the canvas.
         // Create a loop that fills the canvas with rainbow colored squares.
 
-    int inputSize = 300;
-    String[] Colors = new String[] {"Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"};
+    Color[] colors = {new Color (148, 0, 211), new Color(75, 0, 130), Color.BLUE, Color.GREEN, Color.yellow, Color.orange, Color.red};
+
+        int size = 320;
 
         for (int i = 0; i < 7; i++) {
-            colouredSquare(inputSize, );
-            inputSize = inputSize - 30;
+            drawColorSquare(graphics, size, colors[i]);
+            size = size - 50;
         }
 
     }
 
-    public static void colouredSquare (Graphics graphics, int size, String[]Colors) {
-
-        for (int i = 0; i < 6; i++) {
-            graphics.setColor(Color.Colors[i]);
-
-        }
-        graphics.setColor();
-        graphics.drawRect(WIDTH/2 - size/2, HEIGHT/2 - size/2, size, size);
-
+    public static void drawColorSquare (Graphics graphics, int size, Color color){
+        graphics.setColor(color);
+        graphics.fillRect(WIDTH/2 - size/2, HEIGHT/2 - size/2, size, size);
     }
 
     // Don't touch the code below
