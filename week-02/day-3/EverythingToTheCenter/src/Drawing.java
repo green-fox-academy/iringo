@@ -31,10 +31,6 @@ public class Drawing {
                 y = y- 20;
             }
 
-
-
-
-
     }
 
     public static void lineToCenter (Graphics graphics, int x, int y) {
