@@ -15,6 +15,7 @@ public class Params {
 
     public static void main (String[] args) {
         printParams("one", "two", "three");
+        printParams("one", "two", "three", "four", "five");
     }
 
     public static void printParams(String... args) {
