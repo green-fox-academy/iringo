@@ -9,8 +9,10 @@ public class Reverse {
 
         int[] aj = new int[] {3, 4, 5, 6, 7};
 
-        for (int i = aj.length-1; i >= 0; i--) {
-            aj[i] = aj[i];
+        for (int i = 0; i < aj.length/2; i++) {
+            int temp = aj[i];
+            aj[i] = aj[aj.length-1-i];
+            aj[aj.length-1-i] = temp;
         }
         System.out.println(Arrays.toString(aj));
     }
