@@ -15,19 +15,17 @@ public class ParametricAverage {
         System.out.println("Please give me a number: ");
         int userInput = name.nextInt();
         int [] array = new int[userInput];
+        int sum = 0;
 
-
-        for (int i= 0; i < array.length; i++) {
-
-            System.out.println("Enter the number you wish to work with: ");
-            int number = name.nextInt();
-            array[i] = number;
-
+        for (int i = 0; i < userInput; i++) {
+            System.out.println("Please give me a number: ");
+            int num = name.nextInt();
+            sum = sum + num;
         }
 
-        for (int row: array){
-            System.out.print(row);
-        }
+        System.out.print("Sum: " + sum + ",");
+        int average = sum / userInput;
+        System.out.print(" Average: " + average);
 
     }
 
