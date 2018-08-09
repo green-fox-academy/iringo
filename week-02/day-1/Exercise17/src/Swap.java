@@ -10,9 +10,9 @@ public class Swap {
 
         String[] abc = new String[] {"first", "second", "third"};
 
-        String temp = abc[3];
-        abc[3] = abc[1];
-        abc[1] = temp;
+        String temp = abc[2];
+        abc[2] = abc[0];
+        abc[0] = temp;
         System.out.println(Arrays.toString(abc));
 
     }
