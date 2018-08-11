@@ -26,7 +26,6 @@ public class Drawing {
             graphics.drawLine(0, b1, a2, WIDTH);
             b1 = b1 + 20;
             a2 = a2 + 20;
-
         }
 
     }
