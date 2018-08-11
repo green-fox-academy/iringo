@@ -18,7 +18,6 @@ public class Drawing {
 
         for (int j = 1; j < 22; j++) {
 
-            System.out.println(counter);
             for (int i = 0; i < counter; i++) {
                 drawTriangle(graphics, a, b, size, height);
                 a = a + size;
