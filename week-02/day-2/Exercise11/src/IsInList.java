@@ -17,9 +17,6 @@ public class IsInList {
 
         boolean a = true;
         a = list.containsAll(Arrays.asList(4, 8, 12, 16));
-        if (a != true) {
-            a = false;
-        }
         return (a);
 
     }
