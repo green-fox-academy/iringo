@@ -5,66 +5,68 @@ import java.awt.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Drawing {
-    public static void mainDraw(Graphics graphics) {
 
-        int numberOfLines = 14;
-        int canvasDivide = 4;
-        int w = WIDTH / (canvasDivide / 2);
+        public static void mainDraw(Graphics graphics) {
 
-        int x1 = 40 / (canvasDivide / 2);
-        int y1 = 0;
-        int x2 = w;
-        int y2 = 20 / (canvasDivide / 2);
+            int numberOfLines = 14;
+            int startingPoint = 20;
 
-        int a1 = 0;
-        int b1 = 40 / (canvasDivide / 2);
-        int a2 = 20 / (canvasDivide / 2);
-        int b2 = w;
-
-
-        for (int j = 0; j < canvasDivide / 2; j++) {
-
-            for (int l = 0; l < canvasDivide / 2; l++) {
-
-                for (int i = 0; i < numberOfLines; i++) {
-                    graphics.setColor(new Color(138, 43, 226));
-                    graphics.drawLine(x1, y1, x2, y2);
-                    x1 = x1 + 20 / (canvasDivide / 2);
-                    y2 = y2 + 20 / (canvasDivide / 2);
-                }
-
-                x1 = (40 / (canvasDivide / 2)) + w * (l + 1);
-                x2 = WIDTH;
-                y2 = 20 / (canvasDivide / 2);
-                if (j % 2 != 0){
-                    y2 = WIDTH/2 + 20 / (canvasDivide / 2);
-                }
-
-                for (int k = 0; k < numberOfLines; k++) {
-                    graphics.setColor(Color.GREEN);
-                    graphics.drawLine(a1, b1, a2, b2);
-                    a2 = a2 + 20 / (canvasDivide / 2);
-                    b1 = b1 + 20 / (canvasDivide / 2);
-                }
-                a1 = a1 + w;
-                a2 = (20 / (canvasDivide / 2))+ w * (l+1);
-                b2 = w + w;
+            int x = startingPoint;
+            int y = startingPoint;
+            for (int i = 0; i < numberOfLines; i++) {
+                graphics.setColor(new Color(138, 43, 226));
+                graphics.drawLine(x + (i * 10), 0, WIDTH/2, y + (i * 10));
             }
 
-            w = WIDTH / (canvasDivide/2);
-            x1 = 40 / (canvasDivide / 2);
-            y1 = w;
-            x2 = w;
-            y2 = WIDTH/2 + 20;
+            x = startingPoint + WIDTH/2;
+            y = 0;
+            for (int i = 0; i < numberOfLines; i++) {
+                graphics.setColor(new Color(138, 43, 226));
+                graphics.drawLine(x + (i * 10), 0, WIDTH, y + (i * 10));
+            }
 
-            a1 = 0;
-            b1 = w * (j+1);
-            a2 = 20 / (canvasDivide / 2);
-            b2 = WIDTH;
+            x = startingPoint;
+            y = WIDTH / 2;
+            for (int i = 0; i < numberOfLines; i++) {
+                graphics.setColor(new Color(138, 43, 226));
+                graphics.drawLine(x + (i * 10), WIDTH/2, WIDTH/2, y + (i * 10));
+            }
 
+            x = startingPoint + WIDTH/2;
+            y = WIDTH / 2;
+            for (int i = 0; i < numberOfLines; i++) {
+                graphics.setColor(new Color(138, 43, 226));
+                graphics.drawLine(x + (i * 10), WIDTH/2, WIDTH, y + (i * 10));
+            }
+
+            int a = startingPoint;
+            int b = startingPoint;
+            for (int j = 0; j < numberOfLines; j++) {
+                graphics.setColor(Color.GREEN);
+                graphics.drawLine(0, b + (j * 10), a + (j * 10), WIDTH/2);
+            }
+
+            a = WIDTH/2;
+            b = startingPoint;
+            for (int j = 0; j < numberOfLines; j++) {
+                graphics.setColor(Color.GREEN);
+                graphics.drawLine(a, b + (j * 10), a + (j * 10), WIDTH/2);
+            }
+
+            a = startingPoint;
+            b = startingPoint + WIDTH/2;
+            for (int j = 0; j < numberOfLines; j++) {
+                graphics.setColor(Color.green);
+                graphics.drawLine(0, b + (j * 10), a + (j * 10), WIDTH );
+            }
+
+            a = WIDTH/2;
+            b = startingPoint + WIDTH/2;
+            for (int j = 0; j < numberOfLines; j++) {
+                graphics.setColor(Color.green);
+                graphics.drawLine(a, b + (j * 10), a + (j * 10), WIDTH);
+            }
         }
-
-    }
 
     // Don't touch the code below
     static int WIDTH = 320;
