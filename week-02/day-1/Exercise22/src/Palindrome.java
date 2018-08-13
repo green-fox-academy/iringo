@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Create a function named create palindrome following your current language's style guide.
+// It should take a string, create a palindrome from it and then return it.
+
 public class Palindrome {
 
     public static void main(String[] args) {
 
-        String originalWord = "greenfox";
+        String originalWord = "123";
         System.out.println(createPalindrome(originalWord));
 
     }
