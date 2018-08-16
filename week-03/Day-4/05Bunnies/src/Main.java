@@ -5,14 +5,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println(earsOfBunnies(16));
+
     }
 
     public static int earsOfBunnies(int n) {
 
-        if (n == 0) {
-            return 1;
+        if (n == 1) {
+            return 2;
         } else {
-            return ((earsOfBunnies(n - 1)));
+            return 2 + earsOfBunnies(n - 1);
         }
 
     }
