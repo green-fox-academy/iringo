@@ -4,16 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(recursive(5));
+        downCounter(8);
 
     }
 
-    public static int recursive(int n) {
+    public static int downCounter(int n) {
 
-        if (n == 1) {
-            return 1;
+        if (n == 0) {
+            System.out.println(0);
+            return 0;
         } else {
-            return (recursive(n - 1) + n);
+            System.out.println(n);
+            return (downCounter(n-1));
         }
     }
 
