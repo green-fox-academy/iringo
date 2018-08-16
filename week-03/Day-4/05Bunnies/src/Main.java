@@ -7,12 +7,12 @@ public class Main {
 
     }
 
-    public static int earsOfBunnies (int n) {
+    public static int earsOfBunnies(int n) {
 
         if (n == 0) {
             return 1;
         } else {
-            return ((earsOfBunnies(n-1)));
+            return ((earsOfBunnies(n - 1)));
         }
 
     }
