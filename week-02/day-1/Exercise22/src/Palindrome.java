@@ -8,21 +8,21 @@ public class Palindrome {
 
     public static void main(String[] args) {
 
-        String originalWord = "123";
+        String originalWord = "greenfox";
         System.out.println(createPalindrome(originalWord));
 
     }
 
-    public static String createPalindrome (String input) {
+    public static String createPalindrome(String input) {
 
-        char[] word = input.toCharArray();
         char[] temp = new char[input.length()];
         int j = 0;
-        for (int i = word.length-1; i >= 0; i--) {
-                temp[j] = word[i];
-                j++;
+        for (int i = input.length() - 1; i >= 0; i--) {
+            temp[j] = input.charAt(i);
+            j++;
         }
-        String output1 = Arrays.toString(temp);
+
+        String output1 = String.valueOf(temp);
         String output = input + output1;
 
         return output;
