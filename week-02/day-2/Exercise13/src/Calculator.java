@@ -20,33 +20,36 @@ public class Calculator {
         // Print the result to the prompt
         // Exit
 
-
-        int a = 4;
-        int b = 4;
-        calculate(a, b);
-
-    }
-
-    public static int calculate (int a, int b) {
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please type in the expression:");
         String userInputOperand = scanner.nextLine();
+        System.out.println("Please give me the first number:");
+        int operand1 = scanner.nextInt();
+        System.out.println("Please give me the second number:");
+        int operand2 = scanner.nextInt();
+        calculate(userInputOperand, operand1, operand2);
+
+    }
+
+    public static void calculate(String userInputOperand, int a, int b) {
+
         int output = 0;
 
-        if (userInputOperand == "+"){
-            output = a + b;
-        } else if (userInputOperand == "-"){
-            output = a - b;
-        } else if (userInputOperand == "*") {
-            output = a * b;
-        } else if (userInputOperand == "/") {
-            output = a / b;
-        } else if (userInputOperand == "%") {
-            output = a % b;
+        if (userInputOperand.contains("+")) {
+            System.out.println(a + b);
         }
-
-        return output;
+        if (userInputOperand.contains("-")) {
+            System.out.println(a - b);
+        }
+        if (userInputOperand.contains("*")) {
+            System.out.println(a * b);
+        }
+        if (userInputOperand.contains("/")) {
+            System.out.println(a / b);
+        }
+        if (userInputOperand.contains("%")) {
+            System.out.println(a % b);
+        }
 
     }
 }
