@@ -4,10 +4,18 @@ import java.awt.event.ActionEvent;
 
 public class Main extends JComponent {
 
-    private static int MAX_DEPTH = 0;
+    private static int MAX_DEPTH = 3;
 
     private static int size = 500;
     private static int height = (int) (size * (Math.sqrt(3) / 2));
+
+    private static int x0 = 0;
+    private static int x1 = 500;
+    private static int x2 = 250;
+
+    private static int y0 = 0;
+    private static int y1 = 0;
+    private static int y2 = (int) (size * (Math.sqrt(3) / 2));
 
 
     @Override
@@ -16,35 +24,23 @@ public class Main extends JComponent {
 
         Graphics2D graphics = (Graphics2D) g;
 
-        int [] size0Array = {size/2, size - size, size};
-        int [] height0tArray = {height, height - height, height - height};
 
-        drawTriangle(graphics, size0Array, height0tArray, 0);
+        drawTriangle(graphics, x0, y0, x1, y1, x2, y2, 0);
 
     }
-        private void drawTriangle (Graphics2D g, int [] sizeArray, int [] heightArray, int depth) {
+        private void drawTriangle (Graphics2D g, int x0, int y0, int x1, int y1, int x2, int y2, int depth) {
 
             if (depth > MAX_DEPTH) {
                 return;
             }
 
-            g.drawPolygon(sizeArray, heightArray, 3);
+            g.drawLine(x0, y0, x1, y1);
+            g.drawLine(x1, y1, x2, y2);
+            g.drawLine(x2, y2, x0, y0);
 
-            int [] x1Points = {size/2, size/4, size * 3/4};
-            int [] y1Points = {height - height, height/2, height/2};
-            drawTriangle(g, x1Points, y1Points, depth + 1);
-
-            int [] x2Points = {size/4, size/8, size * 3/8};
-            int [] y2Points = {height - height, height * 1/4, height * 1/4 };
-            drawTriangle(g, x2Points, y2Points, depth + 1);
-
-            int [] x3Points = {size * 6/8, size * 5/8, size * 7/8};
-            int [] y3Points = {height - height, height * 1/4, height * 1/4};
-            drawTriangle(g, x3Points, y3Points, depth + 1);
-
-            int [] x4Points = {size/2, size * 3/8, size * 5/8};
-            int [] y4Points = {height - height/2, height - height/4, height - height/4};
-            drawTriangle(g, x4Points, y4Points, depth + 1);
+            drawTriangle(g, x0, y0, x1 - size/2, y1, x2 - size/4, y2 - height/2, depth + 1);
+            drawTriangle(g, x0 + size/2, y0, x1, y1, x2 + size/4, y2- height/2, depth +1);
+            drawTriangle(g, x0 + size/4, y0 + height/2, x1 - size/4, y1 + height/2, x2, y2, depth +1);
 
         }
 
