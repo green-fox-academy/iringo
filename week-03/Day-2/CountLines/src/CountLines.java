@@ -27,9 +27,11 @@ public class CountLines {
             for (int i = 0; i < lines.size(); i++) {
                 counter++;
             }
-            System.out.println(counter);
+            System.out.println("The number of lines is: " + counter);
         } catch (Exception e) {
             System.out.println("0");
         }
+
     }
+
 }
