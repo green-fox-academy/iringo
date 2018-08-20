@@ -3,24 +3,22 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
         List<Pokemon> pokemonOfAsh = initializePokemons();
 
         // Every pokemon has a name and a type.
         // Certain types are effective against others, e.g. water is effective against fire
-
         // Ash currently has 5 pokemon.
         // A wild pokemon appeared!
 
         Pokemon wildPokemon = new Pokemon("Oddish", "leaf", "water");
-
         // Which pokemon should Ash use?
 
         for (int i = 0; i < pokemonOfAsh.size(); i++) {
 
-            if (pokemonOfAsh.get(i).isEffectiveAgainst(wildPokemon) == true) {
+            if (pokemonOfAsh.get(i).isEffectiveAgainst(wildPokemon)) {
                 System.out.println("I choose you, " + pokemonOfAsh.get(i).name + "!");
             }
-
         }
 
     }

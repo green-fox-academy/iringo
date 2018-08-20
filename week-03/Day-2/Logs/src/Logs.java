@@ -3,6 +3,7 @@
 // Write a function that returns an array with the unique IP adresses.
 // Write a function that returns the GET / POST request ratio.
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +29,7 @@ public class Logs {
             for (int i = 0; i < lines.size(); i++) {
                outputArray.add(i, lines.get(i).substring(27, 39));
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(("No such file."));
         }
         return outputArray;
@@ -48,7 +49,7 @@ public class Logs {
                     getCounter++;
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(("No such file."));
         }
         if (postCounter > getCounter) {
