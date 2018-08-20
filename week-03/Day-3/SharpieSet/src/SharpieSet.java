@@ -11,6 +11,10 @@ public class SharpieSet {
 
     ArrayList<Sharpie> list = new ArrayList<Sharpie>();
 
+    SharpieSet (Sharpie sharpie) {
+            this.list.add(sharpie);
+    }
+
     public int countUsable() {
         int counter = 0;
         for (int i = 0; i < list.size(); i++) {
