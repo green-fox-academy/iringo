@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
 
         Sharpie sharpie1 = new Sharpie("blue", 10);
-        Sharpie sharpie2 = new Sharpie ("red", 20);
-        Sharpie sharpie3 = new Sharpie ("yellow", 30);
+        Sharpie sharpie2 = new Sharpie("red", 20);
+        Sharpie sharpie3 = new Sharpie("yellow", 30);
         sharpie1.use(4);
         sharpie2.use(5);
         sharpie3.use(120);
@@ -18,15 +18,5 @@ public class Main {
 
         System.out.println(sharpieSet3.countUsable());
     }
-
-
-
-
-
-
-
-
-
-
 
 }
