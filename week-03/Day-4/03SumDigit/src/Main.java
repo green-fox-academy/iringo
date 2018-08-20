@@ -13,11 +13,10 @@ public class Main {
 
     public static int sumOfDigits(int n) {
 
-        int sum = 0;
         if (n == 0) {
             return 0;
         } else {
-            return (sum = (n % 10) + sumOfDigits(n / 10));
+            return ((n % 10) + sumOfDigits(n / 10));
         }
 
     }
