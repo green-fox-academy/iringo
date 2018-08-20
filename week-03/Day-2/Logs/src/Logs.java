@@ -7,30 +7,54 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Logs {
 
     public static void main(String[] args) {
 
+        System.out.println(ipAddress("logs.txt"));
+        System.out.println(getPostRatio(("logs.txt")));
+
     }
 
-    public static Array[] ipAddress (String filename) {
+    public static ArrayList<String> ipAddress(String filename) {
+
+        ArrayList<String> outputArray = new ArrayList<String>();
         try {
             Path filepath = Paths.get(filename);
             List<String> lines = Files.readAllLines(filepath);
-            Array[] outputArray = new Array[lines.size()];
             for (int i = 0; i < lines.size(); i++) {
-                System.out.println(lines.toString().substring(25, 35));
+               outputArray.add(i, lines.get(i).substring(27, 39));
             }
         } catch (Exception e) {
             System.out.println(("No such file."));
         }
-        return
+        return outputArray;
     }
 
-    public static int getPostRatio (String filename) {
+    public static double getPostRatio(String filename) {
 
+        double postCounter = 0;
+        double getCounter = 0;
+        try {
+            Path filepath = Paths.get(filename);
+            List<String> lines = Files.readAllLines(filepath);
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).substring(42, 46) == "POST") {
+                    postCounter++;
+                } else if (lines.get(i).substring(41, 46) == "GET") {
+                    getCounter++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(("No such file."));
+        }
+        if (postCounter > getCounter) {
+            return postCounter / getCounter;
+        } else {
+            return getCounter / postCounter;
+        }
     }
-
 }
