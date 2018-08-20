@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -19,11 +20,9 @@ public class WriteSIngleLine {
         try {
             Path path = Paths.get("my-file.txt");
             List<String> lines = new ArrayList<>();
-            for (int i = 0; i < 1; i++) {
-                lines.add("Iringo");
-            }
+            lines.add("Iringo");
             Files.write(path, lines);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Unable to write file: my-file.txt");
         }
 
