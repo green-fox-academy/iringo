@@ -4,11 +4,12 @@
     //countUsable() -> sharpie is usable if it has ink in it
     //removeTrash() -> removes all unusable sharpies
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SharpieSet{
 
-    List<Sharpie> list;
+    ArrayList<Sharpie> list = new ArrayList<Sharpie>();
 
     public int countUsable() {
 
