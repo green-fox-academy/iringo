@@ -56,12 +56,20 @@ public class StudenCounter {
         System.out.println("People who have got more than four candies are: " + names);
 
         Integer sumOfAge = 0;
+        Double sumOfAgeDouble = 0.0;
+        Double finalAge = 0.0;
         for (Map<String, Object> entry : map) {
             if ((int) entry.get("candies") < 5) {
-                sumOfAge += (Integer) (entry.get("age"));
+                if (entry.get("age") instanceof Double) {
+                    sumOfAgeDouble += (Double )entry.get("age");
+                }
+                if (entry.get("age") instanceof Integer) {
+                    sumOfAge += (Integer) (entry.get("age"));
+                }
             }
         }
-        System.out.println("The sum age of people who have less than 5 candies: " + sumOfAge);
+        finalAge = sumOfAgeDouble + sumOfAge;
+        System.out.println("The sum age of people who have less than 5 candies: " + finalAge);
 
     }
 }
