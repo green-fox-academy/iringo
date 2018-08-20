@@ -17,7 +17,7 @@ public class Logs {
 
         System.out.println(ipAddress("logs.txt"));
         System.out.println(getPostRatio(("logs.txt")));
-
+    //27 39
     }
 
     public static ArrayList<String> ipAddress(String filename) {
@@ -27,7 +27,9 @@ public class Logs {
             Path filepath = Paths.get(filename);
             List<String> lines = Files.readAllLines(filepath);
             for (int i = 0; i < lines.size(); i++) {
-               outputArray.add(i, lines.get(i).substring(27, 39));
+                for (int j = 0; j < lines.get(i).length(); j++) {
+                    outputArray.add(i, lines.get(j).substring(5, 10));
+                }
             }
         } catch (IOException e) {
             System.out.println(("No such file."));

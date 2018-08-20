@@ -13,7 +13,6 @@ public class Main {
 
     public static int powerN(int base, int n) {
 
-        int output = 0;
         if (n != 0){
             return (base * (powerN(base, n-1)));
         } else {
