@@ -4,20 +4,20 @@ public class Person {
     private int age;
     private String gender;
 
-    Person (String name, int age, String gender) {
+    Person(String name, int age, String gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
-    Person () {
+    Person() {
         this.name = "Jane Doe";
         this.age = 30;
         this.gender = "female";
     }
 
-    public void introduce (){
-        System.out.print("Hi, I'm " + name + " " + age + " year old" + " " + gender);
+    public void introduce() {
+        System.out.print("Hi, I'm " + name + " " + age + " year old" + " " + gender + " ");
     }
 
     public void getGoal() {

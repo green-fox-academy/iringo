@@ -3,13 +3,13 @@ public class Student extends Person {
     private String previousOrganization;
     private int skippedDays;
 
-    Student (String name, int age, String gender, String previousOrganization){
+    Student(String name, int age, String gender, String previousOrganization) {
         super(name, age, gender);
         this.previousOrganization = previousOrganization;
         this.skippedDays = 0;
     }
 
-    Student () {
+    Student() {
         super("Jane Doe", 30, "female");
         this.previousOrganization = "The School of life";
         this.skippedDays = 0;
@@ -26,10 +26,9 @@ public class Student extends Person {
         System.out.print("from" + " " + previousOrganization + " who skipped" + " " + skippedDays + " days from the course already.");
     }
 
-    public void skipDays (int numberOfDays) {
+    public void skipDays(int numberOfDays) {
         this.skippedDays += numberOfDays;
     }
-
 
 
 }
