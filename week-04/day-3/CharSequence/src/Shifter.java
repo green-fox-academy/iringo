@@ -10,7 +10,7 @@ public class Shifter implements CharSequence {
 
     @Override
     public char charAt(int index) {
-        return string.charAt();
+        return charAt((string.length()-1)+index);
     }
 
     @Override
