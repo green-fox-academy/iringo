@@ -5,11 +5,11 @@ public class Mammals extends Animal {
     private String hairOrFurr;
     private String skinType;
 
-    public Mammals (String name) {
+    public Mammals(String name) {
         super(name);
     }
 
-    public void warmBlooded(){
+    public void warmBlooded() {
         System.out.println("I am warm blooded.");
     }
 

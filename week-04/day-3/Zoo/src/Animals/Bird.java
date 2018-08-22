@@ -5,7 +5,7 @@ public class Bird extends Animal {
     private String featherType;
     private int vision = 270;
 
-    public Bird (String name) {
+    public Bird(String name) {
         super(name);
     }
 
