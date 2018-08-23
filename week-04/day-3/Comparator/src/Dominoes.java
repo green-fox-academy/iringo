@@ -19,6 +19,9 @@ public class Dominoes implements Comparable {
 
     @Override
     public int compareTo(Object o) {
+        if (this.values[0] == ((Dominoes) o).values[0]) {
+            return Integer.compare(values[1], ((Dominoes) o).values[1]);
+        }
         return Integer.compare(values[0], ((Dominoes) o).values[0]);
     }
 
