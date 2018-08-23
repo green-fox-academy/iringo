@@ -14,7 +14,7 @@ public class CountLetters {
             if (!map.keySet().contains(ch)) {
                 map.put(ch, 1);
             } else {
-                map.put(ch, map.get(ch)-1);
+                map.put(ch, map.get(ch)+1);
             }
         }
         for (Map.Entry<Character, Integer> m: map.entrySet()) {
