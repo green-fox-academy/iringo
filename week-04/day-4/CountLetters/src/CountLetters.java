@@ -1,19 +1,24 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class CountLetters {
 
     private String string;
 
-    public void countLetters(String string) {
-
-        char[] sorted = new char[string.length()];
-        for (int i = 0; i < string.length(); i++) {
-            sorted[i] = string.charAt(i);
-            int counter = 1;
-            for (int j = i + 1; j < string.length(); j++) {
-                if (sorted[i] == string.charAt(j)) {
-                    counter++;
-                }
+    public void countLetter(String string) {
+        Map<Character, Integer> map = new HashMap<>();
+        char[] charArray = string.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (!map.keySet().contains(ch)) {
+                map.put(ch, 1);
+            } else {
+                map.put(ch, map.get(ch)-1);
             }
-            System.out.println("number of occurence of" + " " + sorted[i] + " " + "is: " + counter);
+        }
+        for (Map.Entry<Character, Integer> m: map.entrySet()) {
+            System.out.println(m);
         }
     }
 

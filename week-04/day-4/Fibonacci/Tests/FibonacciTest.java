@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class FibonacciTest {
 
-    private
+    private Fibonacci f;
 
     @Before
     public void createFibonacci() {
@@ -14,6 +14,10 @@ public class FibonacciTest {
 
     @Test
     public void fibonacciCalculator() {
+        assertEquals(f.fibonacciCalculator(4), 2);
+    }
 
+    public void fibonacciCalculatorWithNull() {
+        assertEquals(f.fibonacciCalculator(4), null);
     }
 }
