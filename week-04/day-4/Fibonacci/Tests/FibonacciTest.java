@@ -14,7 +14,7 @@ public class FibonacciTest {
 
     @Test
     public void fibonacciCalculator() {
-        assertEquals(f.fibonacciCalculator(4), 2);
+        assertEquals(f.fibonacciCalculator(2), 3);
     }
 
     public void fibonacciCalculatorWithNull() {
