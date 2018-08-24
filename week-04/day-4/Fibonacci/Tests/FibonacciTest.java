@@ -9,14 +9,15 @@ public class FibonacciTest {
 
     @Before
     public void createFibonacci() {
-        Fibonacci f = new Fibonacci();
+        f = new Fibonacci();
     }
 
     @Test
     public void fibonacciCalculator() {
-        assertEquals(f.fibonacciCalculator(2), 3);
+        assertEquals(f.fibonacciCalculator(2), 1);
     }
 
+    @Test
     public void fibonacciCalculatorWithNull() {
         assertEquals(f.fibonacciCalculator(4), null);
     }

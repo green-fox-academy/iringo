@@ -4,9 +4,15 @@ import java.util.Map;
 
 public class CountLetters {
 
+    public static void main(String[] args) {
+        Map<Character, Integer> mapp = new HashMap<>();
+        mapp =countLetter("letters");
+        System.out.println(mapp);
+    }
+
     private String string;
 
-    public void countLetter(String string) {
+    public static HashMap<Character, Integer> countLetter(String string) {
         Map<Character, Integer> map = new HashMap<>();
         char[] charArray = string.toCharArray();
         for (int i = 0; i < charArray.length; i++) {
@@ -20,6 +26,7 @@ public class CountLetters {
         for (Map.Entry<Character, Integer> m: map.entrySet()) {
             System.out.println(m);
         }
+        return (HashMap<Character, Integer>) map;
     }
 
 }
