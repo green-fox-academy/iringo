@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class SharpieTest {
 
-    Sharpie sharpie;
+    private Sharpie sharpie;
 
     @Before
     public void createSharpie() {

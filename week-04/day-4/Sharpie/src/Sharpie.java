@@ -1,8 +1,8 @@
 public class Sharpie {
 
-    String color;
-    float width;
-    float inkAmount;
+    private String color;
+    private float width;
+    private float inkAmount;
 
     Sharpie(String color,  float width) {
         this.color = color;
