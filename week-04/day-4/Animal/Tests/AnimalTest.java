@@ -39,7 +39,7 @@ public class AnimalTest {
 
     @Test
     public void drinkWithNullOutcome() {
-        assertEquals(animal.eat(), null);
+        assertEquals(animal.drink(), null);
     }
 
 
@@ -50,6 +50,12 @@ public class AnimalTest {
 
     @Test
     public void playtWithWrongOutcome() {
-        assertEquals(animal.eat(), 188);
+        assertEquals(animal.play(), 188);
     }
+
+    @Test
+    public void playkWithNullOutcome() {
+        assertEquals(animal.play(), null);
+    }
+
 }
