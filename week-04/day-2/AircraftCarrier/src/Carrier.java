@@ -37,10 +37,9 @@ public class Carrier {
     public void fight(Carrier enemy) {
         int allDamage = 0;
         for (int i = 0; i < carrier.size(); i++) {
-            carrier.get(i).fight();
             allDamage += carrier.get(i).fight();
         }
-        this.healthPoint -= allDamage;
+        enemy.healthPoint -= allDamage;
     }
 
     public void getStatus() {
@@ -51,8 +50,7 @@ public class Carrier {
             for (int i = 0; i < carrier.size(); i++) {
                 totalDamage += carrier.get(i).getDamage();
             }
-            System.out.println("HP: " + healthPoint + ", " + "Aircraft count: " + carrier.size() + ", " + "Ammo storage: " + this.ammoStorage + ", " + "Total damage: " + totalDamage);
-            System.out.println("Aircrafts: ");
+            System.out.println("HP: " + healthPoint + ", " + "Aircraft count: " + carrier.size() + ", " + "Ammo storage: " + this.ammoStorage + ", " + "Total damage: " + totalDamage + "\n" + "Aircrafts:");
             for (int i = 0; i < carrier.size(); i++) {
                 carrier.get(i).getStatus();
             }

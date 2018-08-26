@@ -30,8 +30,8 @@ public class Aircraft {
     }
 
     public int fight() {
-        this.ammo = 0;
         this.damage = this.baseDamage * this.ammo;
+        this.ammo = 0;
         return damage;
     }
 
