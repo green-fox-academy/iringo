@@ -1,63 +1,72 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ship {
 
     Pirates captain;
     Pirates pirates;
+    List<Pirates> crew;
+    int randomNumber = (int) (Math.random() * 10);
 
-    ArrayList<Pirates> crew = new ArrayList<>();
+    Ship() {
+        crew = new ArrayList<>();
+    }
 
     public void fillShip () {
-        this.crew.add(1, captain);
-        int randomNumber = (int) (Math.random()*20);
-        for (int i = 0; i < randomNumber; i++) {
-            this.crew.add(new Pirates());
+        this.captain = new Pirates();
+        crew.add(0, captain);
+        for (int i = 1; i < randomNumber + 2; i++) {
+            this.crew.add(i, new Pirates());
         }
     }
 
+    public void getInfo() {
+        System.out.println("Captain's consumed rum:  " + captain.intoxication + ". " + "Captain is dead: " + captain.isDead + ". " + "Captain is passed out: " + captain.howsItGoingMate());
+        int counter = 0;
+        for (int i = 1; i < crew.size(); i++) {
+            if (crew.get(i).isDead == false) {
+                counter ++;
+            }
+        }
+        System.out.println("The number of pirates is: " + (crew.size()-1) + " " + "The number of alive pirates is: " + counter);
+    }
+
     public boolean shipBattle (Ship enemyShip) {
+
         int scoreShip1 = 0;
         int scoreShip2 = 0;
 
         for (int i = 1; i < this.crew.size(); i++) {
-            if (!this.pirates.isDead) {
+            if (!this.crew.get(i).isDead) {
                 scoreShip1++;
             }
         }
-        if (!this.captain.isDead) {
-            scoreShip1++;
-        }
-        scoreShip1 = scoreShip1 + this.captain.intoxication;
+        scoreShip1 += this.captain.intoxication;
 
-        for (int i = 0; i < enemyShip.crew.size(); i++) {
-            if (!enemyShip.pirates.isDead) {
+        for (int i = 1; i < enemyShip.crew.size(); i++) {
+            if (!enemyShip.crew.get(i).isDead) {
                 scoreShip2++;
             }
         }
-        if (!enemyShip.captain.isDead) {
-            scoreShip2++;
-        }
-        scoreShip2 = scoreShip2 + enemyShip.captain.intoxication;
+        scoreShip2 += enemyShip.captain.intoxication;
 
         if (scoreShip1 > scoreShip2) {
             for (int i = 0; i <this.crew.size() ; i++) {
-                int randomNumber = (int) (Math.random()*10);
-                pirates.drinkSomeRum(randomNumber);
+                crew.get(i).drinkSomeRum(randomNumber+2);
+                captain.drinkSomeRum(randomNumber+2);
             }
-            int randomNumber = (int) (Math.random()*5);
-            for (int i = 0; i < randomNumber; i++) {
-                enemyShip.pirates.die();
+            for (int i = 1; i < randomNumber-1; i++) {
+                enemyShip.crew.get(i).die();
             }
             return true;
         } else {
-            for (int i = 0; i < enemyShip.crew.size(); i++) {
-                int randomNumber = (int) (Math.random()*10);
-                enemyShip.pirates.drinkSomeRum(randomNumber);
+            for (int i = 1; i < enemyShip.crew.size(); i++) {
+                enemyShip.crew.get(i).drinkSomeRum(randomNumber+2);
+                enemyShip.captain.drinkSomeRum(randomNumber+2);
             }
-            int randomNumber = (int) (Math.random() * 5);
-            for (int i = 0; i < randomNumber; i++) {
-                this.pirates.die();
+            for (int i = 1; i < randomNumber-1; i++) {
+                this.crew.get(i).die();
             }
             return false;
         }

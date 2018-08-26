@@ -6,9 +6,11 @@ public class BattleApp {
         Ship ship2 = new Ship();
 
         ship1.fillShip();
+        ship1.captain.drinkSomeRum(2);
         ship2.fillShip();
-
-        ship1.shipBattle(ship2);
+        System.out.println(ship1.shipBattle(ship2));
+        ship1.getInfo();
+        ship2.getInfo();
 
     }
 }

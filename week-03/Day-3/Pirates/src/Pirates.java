@@ -5,19 +5,29 @@ public class Pirates {
     boolean passedOut;
     String parrot;
 
-    public void drinkSomeRum(int intoxicationLevel) {
+    Pirates() {
+        this.intoxication = 0;
+        this.isDead = false;
+        this.passedOut = false;
+    }
+
+
+    public int drinkSomeRum(int intoxicationLevel) {
         this.intoxication += intoxicationLevel;
         if (this.isDead) {
             System.out.println("He's dead.");
         }
+        return this.intoxication;
     }
 
-    public void howsItGoingMate() {
+    public boolean howsItGoingMate() {
         if (this.intoxication <= 4) {
             System.out.println("Pour me anudder!");
+            return false;
         } else {
             System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
             this.passedOut = true;
+            return true;
         }
     }
 
