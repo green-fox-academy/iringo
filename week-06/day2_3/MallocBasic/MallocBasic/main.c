@@ -9,6 +9,10 @@ int main(int argc, const char * argv[]) {
     int* pointer = NULL;
     pointer = (int*) malloc (5 * sizeof(int));
     for (int i = 0; i < 5; i++) {
+        printf("%d, ", pointer[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < 5; i++) {
         pointer[i] = i;
         printf("%d, ", pointer[i]);
     }
