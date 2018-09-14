@@ -1,15 +1,20 @@
-//
-//  main.c
-//  PrintEachLine
-//
-//  Created by Balázs Iringó on 2018. 09. 14..
-//  Copyright © 2018. Balázs Iringó. All rights reserved.
-//
+// Write a program that opens a file called "my-file.txt", then prints
+// each of lines form the file.
+// You have to create the file, you can use C-programming but it is not mandatory
 
 #include <stdio.h>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+    FILE *fPointer;
+    fPointer = fopen("program.txt", "w");
+    fprintf(fPointer, "I love dogs.\n");
+    fprintf(fPointer, "I love dogs very much!");
+    fclose(fPointer);
+    fPointer = fopen("program.txt", "r");
+    char line[150];
+    while (!feof(fPointer)) {
+        fgets(line, 150, fPointer);
+        puts(line);
+    }
+    fclose(fPointer);
 }
