@@ -11,6 +11,6 @@ int main(int argc, const char * argv[]) {
     float *p_Pi = &Pi;
     char *p_letter = &letter;
     
-    printf("Values without pointers: %p, %p, %p\n", &number, &Pi, letter);
+    printf("Values without pointers: %p, %p, %p\n", &number, &Pi, &letter);
     printf("Values with pointers: %p, %.p, %p\n", p_number, p_Pi, p_letter);
 }
