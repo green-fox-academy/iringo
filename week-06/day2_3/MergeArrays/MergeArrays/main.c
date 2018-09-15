@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 // please allocate a 10 long array and fill it with even numbers
 // please allocate a 10 long array and fill it with odd numbers
@@ -27,17 +28,19 @@ int main(int argc, const char * argv[]) {
     }
     printf("\n");
     pointer = (int *)realloc(pointer, 20);
-    int j =0;
-    for (int i = 1; i < sizeof(pointer); i++) {
+    int j =1;
+    for (int i = 1; i < sizeof(pointer2); i++) {
         if (pointer[i] == 0) {
             pointer[i] = pointer2[j];
-            j++;
         }
+        j++;
     }
     for (int i = 0; i <= sizeof(pointer); i++) {
         printf("%d ", pointer[i]);
     }
     printf("\n");
+    free(pointer);
+    free(pointer2);
     return 0;
 }
 
