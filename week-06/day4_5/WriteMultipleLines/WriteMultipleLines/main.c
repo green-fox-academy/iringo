@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
 void writeToAFile (char* path, char* word, int number)
 {
     FILE *fpointer = fopen (path, "w");
-    for (int i = 0; i <= number; i++) {
+    for (int i = 0; i < number; i++) {
         fprintf(fpointer, word);
     }
     fclose(fpointer);
