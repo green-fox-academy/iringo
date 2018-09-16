@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
 char* appendAFunc(char* input)
 {
     int i;
-    char* outputArray = (char*) calloc (sizeof(*input) + 1, sizeof(char));
+    char* outputArray = (char*) calloc (strlen(input) + 1, sizeof(char));
     for (int i = 0; input[i] != 0; i++) {
         outputArray[i] = input[i];
     }
