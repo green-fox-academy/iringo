@@ -8,13 +8,13 @@ int main(int argc, const char * argv[]) {
     FILE *fPointer;
     fPointer = fopen("program.txt", "w");
     fprintf(fPointer, "I love dogs.\n");
-    fprintf(fPointer, "I love dogs very much!");
+    fprintf(fPointer, "I love dogs very much!\n");
     fclose(fPointer);
     fPointer = fopen("program.txt", "r");
     char line[150];
     while (!feof(fPointer)) {
         fgets(line, 150, fPointer);
-        puts(line);
+        printf("%s", line);
     }
     fclose(fPointer);
 }
