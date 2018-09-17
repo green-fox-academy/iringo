@@ -1,15 +1,26 @@
-//
-//  main.c
-//  Sandwich
-//
-//  Created by Balázs Iringó on 2018. 09. 17..
-//  Copyright © 2018. Balázs Iringó. All rights reserved.
-//
-
 #include <stdio.h>
+#include "Sandwich.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+/* Create a sandwich struct
+ It should store:
+ - name
+ - price (float)
+ - weight (float)
+ Create a function which takes two parameters and returns the price of your order.
+ The parameters should be:
+ - a sandwich struct
+ - and an integer that represents how many sandwiches you want to order */
+
+int main()
+{
+    Sandwich sandwich1;
+    sandwich1.price = 20;
+    printf("The amount you have to pay for the sandwiches 1 is: %.2f", calculatePrice(sandwich1, 5));
     return 0;
 }
+
+
+
+
+
+
