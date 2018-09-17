@@ -1,13 +1,16 @@
-//
-//  Computer.h
-//  Computer
-//
-//  Created by Balázs Iringó on 2018. 09. 17..
-//  Copyright © 2018. Balázs Iringó. All rights reserved.
-//
-
 #ifndef Computer_h
 #define Computer_h
 
+struct Computer {
+    float cpu_speed_GHz;
+    int ram_size_GB;
+    int bits;
+};
+
+typedef struct {
+    float cpu_speed_GHz;
+    int ram_size_GB;
+    int bits;
+} Notebook;
 
 #endif /* Computer_h */
