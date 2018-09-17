@@ -2,6 +2,5 @@
 
 float calculatePrice (Sandwich sandwich, int amount)
 {
-    float finalPrice = sandwich.price * amount;
-    return finalPrice;
+    return (sandwich.price * amount);
 }

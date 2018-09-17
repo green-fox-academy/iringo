@@ -14,7 +14,7 @@
 int main()
 {
     Sandwich sandwich1;
-    sandwich1.price = 20;
+    sandwich1.price = 20.5;
     printf("The amount you have to pay for the sandwiches 1 is: %.2f", calculatePrice(sandwich1, 5));
     return 0;
 }
