@@ -9,6 +9,6 @@ typedef struct {
 
 int sumOfGold (Pirate pirates[], int size);
 double averageOfGold (Pirate pirates[], int size);
-void richestPirate (Pirate pirates[], int size);
+char* richestPirate (Pirate pirates[], int size);
 
 #endif /* Pirates_h */

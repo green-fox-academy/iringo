@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "Pirates.h"
 
 int sumOfGold (Pirate pirates[], int size)
@@ -19,8 +20,9 @@ double averageOfGold (Pirate pirates[], int size)
     return sum / size;
 }
 
-void richestPirate (Pirate pirates[], int size)
+char* richestPirate (Pirate pirates[], int size)
 {
+    char* tmp_name = (char*) calloc (10, sizeof(char));
     int maxGold = pirates[0].gold_count;
     for (int i = 0; i < size; i++) {
         if (pirates[i].gold_count > maxGold && pirates[i].has_wooden_leg == 1) {
@@ -29,7 +31,10 @@ void richestPirate (Pirate pirates[], int size)
     }
     for (int i = 0; i < size; i++) {
         if (pirates[i].gold_count == maxGold) {
-            printf("%s\n", pirates[i].name);
+            for (int j = 0; pirates[i].name[j] != '\0'; j++) {
+                tmp_name[j] = pirates[i].name[j];
+            }
         }
     }
+    return tmp_name;
 }
