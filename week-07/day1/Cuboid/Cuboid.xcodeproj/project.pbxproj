@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F0E713D8214FEF8B0068E6FA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E713D7214FEF8B0068E6FA /* main.c */; };
+		F0E713E0214FEFBB0068E6FA /* Cuboid.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E713DF214FEFBB0068E6FA /* Cuboid.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		F0E713D4214FEF8B0068E6FA /* Cuboid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cuboid; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E713D7214FEF8B0068E6FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0E713DE214FEFAE0068E6FA /* Cuboid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cuboid.h; sourceTree = "<group>"; };
+		F0E713DF214FEFBB0068E6FA /* Cuboid.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Cuboid.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				F0E713D7214FEF8B0068E6FA /* main.c */,
+				F0E713DE214FEFAE0068E6FA /* Cuboid.h */,
+				F0E713DF214FEFBB0068E6FA /* Cuboid.c */,
 			);
 			path = Cuboid;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0E713D8214FEF8B0068E6FA /* main.c in Sources */,
+				F0E713E0214FEFBB0068E6FA /* Cuboid.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

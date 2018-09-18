@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F0E7142D2150F5DB0068E6FA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E7142C2150F5DB0068E6FA /* main.c */; };
+		F0E714352150F6EC0068E6FA /* Pokemon.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E714342150F6EC0068E6FA /* Pokemon.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		F0E714292150F5DB0068E6FA /* Pokemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pokemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E7142C2150F5DB0068E6FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0E714332150F6060068E6FA /* Pokemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pokemon.h; sourceTree = "<group>"; };
+		F0E714342150F6EC0068E6FA /* Pokemon.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Pokemon.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				F0E7142C2150F5DB0068E6FA /* main.c */,
+				F0E714332150F6060068E6FA /* Pokemon.h */,
+				F0E714342150F6EC0068E6FA /* Pokemon.c */,
 			);
 			path = Pokemon;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0E7142D2150F5DB0068E6FA /* main.c in Sources */,
+				F0E714352150F6EC0068E6FA /* Pokemon.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

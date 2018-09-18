@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		F0E71367214FC9580068E6FA /* Computer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Computer; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E7136A214FC9580068E6FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0E71371214FCA590068E6FA /* Computer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Computer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				F0E7136A214FC9580068E6FA /* main.c */,
+				F0E71371214FCA590068E6FA /* Computer.h */,
 			);
 			path = Computer;
 			sourceTree = "<group>";

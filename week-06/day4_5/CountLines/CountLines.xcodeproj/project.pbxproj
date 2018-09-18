@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		F040CB26214BB42B00566747 /* CountLines */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CountLines; sourceTree = BUILT_PRODUCTS_DIR; };
 		F040CB29214BB42B00566747 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F040CB30214BD23300566747 /* file.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = file.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				F040CB29214BB42B00566747 /* main.c */,
+				F040CB30214BD23300566747 /* file.txt */,
 			);
 			path = CountLines;
 			sourceTree = "<group>";

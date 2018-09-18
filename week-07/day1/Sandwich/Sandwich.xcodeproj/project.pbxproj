@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F0E7137F214FCBCA0068E6FA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E7137E214FCBCA0068E6FA /* main.c */; };
+		F0E71391214FD4530068E6FA /* Sandwich.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E71390214FD4530068E6FA /* Sandwich.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		F0E7137B214FCBCA0068E6FA /* Sandwich */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sandwich; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E7137E214FCBCA0068E6FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0E7138F214FD4460068E6FA /* Sandwich.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sandwich.h; sourceTree = "<group>"; };
+		F0E71390214FD4530068E6FA /* Sandwich.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Sandwich.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				F0E7137E214FCBCA0068E6FA /* main.c */,
+				F0E7138F214FD4460068E6FA /* Sandwich.h */,
+				F0E71390214FD4530068E6FA /* Sandwich.c */,
 			);
 			path = Sandwich;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E71391214FD4530068E6FA /* Sandwich.c in Sources */,
 				F0E7137F214FCBCA0068E6FA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

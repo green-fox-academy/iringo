@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F0E71401214FF7A70068E6FA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E71400214FF7A70068E6FA /* main.c */; };
+		F0E71409214FF8990068E6FA /* Pirates.c in Sources */ = {isa = PBXBuildFile; fileRef = F0E71408214FF8990068E6FA /* Pirates.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		F0E713FD214FF7A70068E6FA /* Pirates */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Pirates; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E71400214FF7A70068E6FA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0E71407214FF88D0068E6FA /* Pirates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pirates.h; sourceTree = "<group>"; };
+		F0E71408214FF8990068E6FA /* Pirates.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Pirates.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				F0E71400214FF7A70068E6FA /* main.c */,
+				F0E71407214FF88D0068E6FA /* Pirates.h */,
+				F0E71408214FF8990068E6FA /* Pirates.c */,
 			);
 			path = Pirates;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E71409214FF8990068E6FA /* Pirates.c in Sources */,
 				F0E71401214FF7A70068E6FA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
