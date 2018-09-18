@@ -49,6 +49,3 @@ double averageHealth (Digimon* digimons, int sizeOfArray, char tamer[])
     }
     return health / counter;
 }
-
-
-
