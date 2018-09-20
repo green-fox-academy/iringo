@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "ToDo.h"
 
 int main(int argc, char* argv[]) {
   
     printPrintUsage();
     char* filename = "tasks.txt";
+    char* tasks[100];
+    CheckTasks check;
+    check.check = 0;
     
     if (strcmp(argv[1], "-l") == 0) {
-        printTasks(filename);
-    }
-    
-    char* tasks[100];
-    if (strcmp(argv[1], "-a") == 0) {
+        printTasks(filename, check);
+    } else if (strcmp(argv[1], "-a") == 0) {
         if (argc == 2) {
             printf("Unable to add: no task provided.\n");
         } else {
@@ -22,7 +23,7 @@ int main(int argc, char* argv[]) {
                 tasks[j] = argv[i];
                 j++;
             }
-            addTasks(filename, *tasks, argc-2);
+            addTasks(filename, tasks, argc-2);
         }
     } else if (strcmp(argv[1], "-r") == 0) {
         if (argc == 2) {
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]) {
             printf("The list does not have at least two elements, unable to remove.\n");
         } else if (argc < atoi(argv[2])) {
             printf("Unable to remove: index is out of bound.\n");
-        } else if (checkTheString(&argv[2], sizeof(argv[2])) == 0) {
+        } else if (atoi(argv[2]) == 0) {
              printf("Unable to remove: index is not a number.\n");
         } else {
             int index = atoi(argv[2]);
@@ -42,11 +43,11 @@ int main(int argc, char* argv[]) {
             printf("The list does not have at least two elements, unable to check.\n");
         } else if (argc < atoi(argv[2])) {
             printf("Unable to check: index is out of bound.\n");
-        } else if (checkTheString(&argv[2], sizeof(argv[2])) == 0) {
-            printf("Unable to remove: index is not a number.\n");
+        } else if (atoi(argv[2]) == 0) {
+            printf("Unable to check: index is not a number.\n");
         } else {
             int index = atoi(argv[2]);
-            checkTasks(filename, index);
+            checkTasks(filename, index, check);
         }
     } else {
         printf("Unsupported argument.\n");

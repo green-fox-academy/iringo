@@ -11,7 +11,7 @@ void printPrintUsage()
     printf("\n");
 }
 
-void printTasks(char* filename)
+void printTasks(char* filename, CheckTasks check)
 {
     int counter = 0;
     FILE *fpointer = fopen(filename, "r");
@@ -23,12 +23,14 @@ void printTasks(char* filename)
         unsigned long length = (unsigned long)ftell(fpointer);
         if (length > 0) {
             rewind(fpointer);
-            int i = 0;
             while (!feof(fpointer)) {
                 counter ++;
                 fgets(line, 150, fpointer);
-                printf("%d - %s", counter, line);
-                i++;
+                if (check.check != counter) {
+                     printf("%d - [] %s", counter, line);
+                } else {
+                     printf("%d - [x] %s", counter, line);
+                }
             }
         } else {
             printf("No todos for today! :)\n");
@@ -38,12 +40,12 @@ void printTasks(char* filename)
     fclose(fpointer);
 }
 
-void addTasks (char* filename, char* toDoTask , int sizeOfArray)
+void addTasks (char* filename, char** toDoTask , int sizeOfArray)
 {
     FILE *fpointer = fopen(filename, "a");
-    fprintf(fpointer, "\n");
+    fprintf (fpointer, "\n");
     for (int i = 0; i < sizeOfArray; i++) {
-        fprintf(fpointer, "%s ", toDoTask[i]);
+        fprintf (fpointer, "%s ", toDoTask[i]);
     }
 }
 
@@ -66,51 +68,51 @@ int countLines (char* filename)
     return counter;
 }
 
-int checkTheString (char* toDoTask[], int size)
-{
-    int counter = 0;
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j != '\0'; j++) {
-            if ((toDoTask[i][j] >= 'a' && toDoTask[i][j] <= 'z') || (toDoTask[i][j] >= 'A' && toDoTask[i][j] <= 'Z')) {
-                counter++;
-            }
-        }
-    }
-    if (counter > 0) {
-        return 0;
-    }
-    return 1;
-}
-
 void removeTasks (char* filename, int index)
 {
-    FILE *fp1, *fp2;
+    FILE *srcFile;
+    FILE *tempFile;
+    srcFile  = fopen(filename, "r");
+    tempFile = fopen("temp.txt", "w");
+    rewind(srcFile);
+    char buffer[1000];
+    int count = 1;
+    while ((fgets(buffer, 1000, srcFile)) != NULL) {
+        if (index != count)
+            fputs(buffer, tempFile);
+        count++;
+    }
+    fclose(srcFile);
+    fclose(tempFile);
+    remove(filename);
+    rename("temp.txt", filename);
+
+    
+    /*FILE *fp1, *fp2;
     char c;
     int temp = 1;
     fp1 = fopen(filename, "r");
-    c = getc(fp1);
     rewind(fp1);
+    c = fgetc(fp1);
     fp2 = fopen("temp.txt", "w");
-    c = getc(fp1);
     while (c != EOF) {
         c = getc(fp1);
-        if (c == '\n')
+        if (temp != index) {
+            fputc(c, fp2);
+        }
+        if (c == '\n') {
             temp++;
-        if (temp != index)
-        {
-            putc(c, fp2);
         }
     }
     fclose(fp1);
     fclose(fp2);
     remove(filename);
-    rename("temp.txt", filename);
+    rename("temp.txt", filename);*/
 }
 
-void checkTasks (char* filename, int index, ToDosStruct checked)
+void checkTasks (char* filename, int index, CheckTasks check)
 {
     FILE *fpointer = fopen(filename, "r");
-    char line[250];
     int counter = 1;
     if (fpointer == NULL) {
         printf("Could not open the file!\n");
@@ -118,9 +120,8 @@ void checkTasks (char* filename, int index, ToDosStruct checked)
         while (!feof(fpointer)) {
             counter ++;
             if (counter == index) {
-                
+                check.check = index;
             }
         }
     }
 }
-
