@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
             printf("Unable to remove: no index provided.\n");
         } else if (countLines("tasks.txt") < 2) {
             printf("The list does not have at least two elements, unable to remove.\n");
-        } else if (argc < atoi(argv[2])) {
+        } else if (countLines("tasks.txt") < atoi(argv[2])) {
             printf("Unable to remove: index is out of bound.\n");
         } else if (atoi(argv[2]) == 0) {
              printf("Unable to remove: index is not a number.\n");
@@ -41,13 +41,14 @@ int main(int argc, char* argv[]) {
     } else if (strcmp(argv[1], "-c") == 0) {
         if (countLines("tasks.txt") < 2) {
             printf("The list does not have at least two elements, unable to check.\n");
-        } else if (argc < atoi(argv[2])) {
+        } else if (countLines("tasks.txt") < atoi(argv[2])) {
             printf("Unable to check: index is out of bound.\n");
         } else if (atoi(argv[2]) == 0) {
             printf("Unable to check: index is not a number.\n");
         } else {
             int index = atoi(argv[2]);
             checkTasks(filename, index, check);
+            
         }
     } else {
         printf("Unsupported argument.\n");

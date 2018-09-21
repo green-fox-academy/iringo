@@ -11,6 +11,6 @@ void printTasks(char* filename, CheckTasks check);
 void addTasks (char* filename, char** toDoTask , int sizeOfArray);
 int countLines (char* filename);
 void removeTasks (char* filename, int index);
-void checkTasks (char* filename, int index, CheckTasks check);
+CheckTasks checkTasks (char* filename, int index, CheckTasks check);
 
 #endif /* ToDo_h */

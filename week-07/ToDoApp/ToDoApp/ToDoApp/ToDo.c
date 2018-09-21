@@ -1,10 +1,9 @@
-#include "ToDo.h"
-#include <stdio.h>
+# include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "ToDo.h"
 
-
-void printPrintUsage()
+void printPrintUsage(void)
 {
     printf("Command Line Todo Application\n=============================\n");
     printf("Command line arguments: \n-l\tLists all the tasks\n-a\tAdds a new task\n-r\tRemoves a task\n-c\tCompletes a task\n");
@@ -86,31 +85,9 @@ void removeTasks (char* filename, int index)
     fclose(tempFile);
     remove(filename);
     rename("temp.txt", filename);
-
-    
-    /*FILE *fp1, *fp2;
-    char c;
-    int temp = 1;
-    fp1 = fopen(filename, "r");
-    rewind(fp1);
-    c = fgetc(fp1);
-    fp2 = fopen("temp.txt", "w");
-    while (c != EOF) {
-        c = getc(fp1);
-        if (temp != index) {
-            fputc(c, fp2);
-        }
-        if (c == '\n') {
-            temp++;
-        }
-    }
-    fclose(fp1);
-    fclose(fp2);
-    remove(filename);
-    rename("temp.txt", filename);*/
 }
 
-void checkTasks (char* filename, int index, CheckTasks check)
+CheckTasks checkTasks (char* filename, int index, CheckTasks check)
 {
     FILE *fpointer = fopen(filename, "r");
     int counter = 1;
@@ -124,4 +101,5 @@ void checkTasks (char* filename, int index, CheckTasks check)
             }
         }
     }
+    return check;
 }
