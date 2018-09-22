@@ -1,14 +1,10 @@
-//
-//  Calculator.h
-//  CommandLineCalculator
-//
-//  Created by Balázs Iringó on 2018. 09. 22..
-//  Copyright © 2018. Balázs Iringó. All rights reserved.
-//
-
 #ifndef Calculator_h
 #define Calculator_h
 
 #include <stdio.h>
+
+void printUsage(void);
+void addNumbers (float a, float b);
+void set_cursor_pos(float x, float y, float result);
 
 #endif /* Calculator_h */

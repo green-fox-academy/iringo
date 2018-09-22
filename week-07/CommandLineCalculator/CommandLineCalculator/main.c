@@ -1,15 +1,11 @@
-//
-//  main.c
-//  CommandLineCalculator
-//
-//  Created by Balázs Iringó on 2018. 09. 22..
-//  Copyright © 2018. Balázs Iringó. All rights reserved.
-//
-
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "Calculator.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+    printUsage();
+    if (strcmp(argv[2], "+") == 0) {
+        addNumbers (atoi(argv[1]), atoi(argv[3]));
+    }
 }
