@@ -94,7 +94,7 @@ void checkTasks (char* filename, int index)
     srcFile  = fopen(filename, "r");
     tempFile = fopen("temp.txt", "w");
     char checkedTask[] = "[x] ";
-    char notCheckedTask[] = "[] ";
+    char notCheckedTask[] = "[ ] ";
     if (srcFile == NULL) {
         printf("Could not open the file!\n");
     } else {
@@ -102,29 +102,19 @@ void checkTasks (char* filename, int index)
         char buffer[1000];
         int count = 1;
         while ((fgets(buffer, 1000, srcFile)) != NULL) {
-            // Itt létrehozok egy ideiglenes tömböt, amibe majd belemásolom a sorokat.
             char *result = malloc(strlen(checkedTask) + strlen(buffer) + 1);
-            // Ezzel az if-el pedig azt szeretném leelenőrízni, hogy van-e már ott [],
-            //és ha iggen akkor azt törölje onnan ki, de valamiért ez így nem máködik...
+            char *ps = buffer;
             if (buffer[0] == '[') {
-                char *ps = buffer;
-                for (char *ps = buffer;  *ps != '\0'; ps++) {
-                    *ps = *(ps+3);
-                }
-                *ps = '\0';
+                ps += 4;
             }
-            // Itt peddig belerakom a sorokat []-al vagy [x]-el attól függően, hogy épp melyik sorban vagyok.
-            if (index == count){
+            if (index == count || buffer[1] == 'x') {
                 strcpy(result, checkedTask);
-                strcat(result, buffer);
-                fputs(result, tempFile);
-                free(result);
             } else {
                 strcpy(result, notCheckedTask);
-                strcat(result, buffer);
-                fputs(result, tempFile);
-                free(result);
             }
+            strcat(result, ps);
+            fputs(result, tempFile);
+            free(result);
             count++;
         }
         fclose(srcFile);

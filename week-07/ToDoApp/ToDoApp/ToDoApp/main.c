@@ -46,7 +46,6 @@ int main(int argc, char* argv[]) {
         } else {
             int index = atoi(argv[2]);
             checkTasks(filename, index);
-            
         }
     } else {
         printf("Unsupported argument.\n");
