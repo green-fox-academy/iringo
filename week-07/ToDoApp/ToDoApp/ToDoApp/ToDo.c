@@ -10,7 +10,7 @@ void printPrintUsage(void)
     printf("\n");
 }
 
-void printTasks(char* filename, CheckTasks check)
+void printTasks(char* filename)
 {
     int counter = 0;
     FILE *fpointer = fopen(filename, "r");
@@ -25,11 +25,7 @@ void printTasks(char* filename, CheckTasks check)
             while (!feof(fpointer)) {
                 counter ++;
                 fgets(line, 150, fpointer);
-                if (check.check != counter) {
-                     printf("%d - [] %s", counter, line);
-                } else {
-                     printf("%d - [x] %s", counter, line);
-                }
+                printf("%d - %s", counter, line);
             }
         } else {
             printf("No todos for today! :)\n");
@@ -73,33 +69,67 @@ void removeTasks (char* filename, int index)
     FILE *tempFile;
     srcFile  = fopen(filename, "r");
     tempFile = fopen("temp.txt", "w");
-    rewind(srcFile);
-    char buffer[1000];
-    int count = 1;
-    while ((fgets(buffer, 1000, srcFile)) != NULL) {
-        if (index != count)
-            fputs(buffer, tempFile);
-        count++;
+    if (srcFile == NULL) {
+         printf("Could not open the file!\n");
+    } else {
+        rewind(srcFile);
+        char buffer[1000];
+        int count = 1;
+        while ((fgets(buffer, 1000, srcFile)) != NULL) {
+            if (index != count)
+                fputs(buffer, tempFile);
+            count++;
+        }
+        fclose(srcFile);
+        fclose(tempFile);
+        remove(filename);
+        rename("temp.txt", filename);
     }
-    fclose(srcFile);
-    fclose(tempFile);
-    remove(filename);
-    rename("temp.txt", filename);
 }
 
-CheckTasks checkTasks (char* filename, int index, CheckTasks check)
+void checkTasks (char* filename, int index)
 {
-    FILE *fpointer = fopen(filename, "r");
-    int counter = 1;
-    if (fpointer == NULL) {
+    FILE *srcFile;
+    FILE *tempFile;
+    srcFile  = fopen(filename, "r");
+    tempFile = fopen("temp.txt", "w");
+    char checkedTask[] = "[x] ";
+    char notCheckedTask[] = "[] ";
+    if (srcFile == NULL) {
         printf("Could not open the file!\n");
     } else {
-        while (!feof(fpointer)) {
-            counter ++;
-            if (counter == index) {
-                check.check = index;
+        rewind(srcFile);
+        char buffer[1000];
+        int count = 1;
+        while ((fgets(buffer, 1000, srcFile)) != NULL) {
+            // Itt létrehozok egy ideiglenes tömböt, amibe majd belemásolom a sorokat.
+            char *result = malloc(strlen(checkedTask) + strlen(buffer) + 1);
+            // Ezzel az if-el pedig azt szeretném leelenőrízni, hogy van-e már ott [],
+            //és ha iggen akkor azt törölje onnan ki, de valamiért ez így nem máködik...
+            if (buffer[0] == '[') {
+                char *ps = buffer;
+                for (char *ps = buffer;  *ps != '\0'; ps++) {
+                    *ps = *(ps+3);
+                }
+                *ps = '\0';
             }
+            // Itt peddig belerakom a sorokat []-al vagy [x]-el attól függően, hogy épp melyik sorban vagyok.
+            if (index == count){
+                strcpy(result, checkedTask);
+                strcat(result, buffer);
+                fputs(result, tempFile);
+                free(result);
+            } else {
+                strcpy(result, notCheckedTask);
+                strcat(result, buffer);
+                fputs(result, tempFile);
+                free(result);
+            }
+            count++;
         }
+        fclose(srcFile);
+        fclose(tempFile);
+        remove(filename);
+        rename("temp.txt", filename);
     }
-    return check;
 }

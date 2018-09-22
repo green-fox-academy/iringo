@@ -9,11 +9,9 @@ int main(int argc, char* argv[]) {
     printPrintUsage();
     char* filename = "tasks.txt";
     char* tasks[100];
-    CheckTasks check;
-    check.check = 0;
     
     if (strcmp(argv[1], "-l") == 0) {
-        printTasks(filename, check);
+        printTasks(filename);
     } else if (strcmp(argv[1], "-a") == 0) {
         if (argc == 2) {
             printf("Unable to add: no task provided.\n");
@@ -47,24 +45,10 @@ int main(int argc, char* argv[]) {
             printf("Unable to check: index is not a number.\n");
         } else {
             int index = atoi(argv[2]);
-            checkTasks(filename, index, check);
+            checkTasks(filename, index);
             
         }
     } else {
         printf("Unsupported argument.\n");
     }
 }
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
