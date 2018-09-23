@@ -7,21 +7,21 @@
 // - Swap the first and the third element of `abc` by using a function
 // - That function should take an array as a parameter and return the correct array
 
-void swapElements(char** s1);
+char** swapElements(char** inputArray);
 
 int main()
 {
-    char* abc[3][6] = {"first", "second", "third"};
-    swapElements(abc);
-
+    char* abc[] = {"first", "second", "third"};
+    char** newArray = swapElements(abc);
+    for (int i = 0; i < 4; i++) {
+        printf("%s, ", newArray[i]);
+    }
 }
 
-void swapElements(char** inputArray)
+char** swapElements(char** inputArray)
 {
-    char* temp = *inputArray[0];
-    *inputArray[0] = *inputArray[2];
-    *inputArray[2] = *temp;
-    for (int i = 0; i < 4; i++) {
-        printf("%s\n", inputArray[i]);
-    }
+    char* temp = inputArray[0];
+    inputArray[0] = inputArray[2];
+    inputArray[2] = temp;
+    return inputArray;
 }
