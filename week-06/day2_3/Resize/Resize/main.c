@@ -12,18 +12,23 @@ int* resize (int* intArray, int sizeOfArray, int newSize);
 
 int main()
 {
-    int arrayOfNumbers[] = {1, 2, 3, 4};
+    int* arrayOfNumbers = (int*) calloc (4, sizeof(int));
+    arrayOfNumbers[0] = 1;
+    arrayOfNumbers[1] = 2;
     int sizeOfArray = sizeof(arrayOfNumbers) / sizeof(int);
-    printf("%d", resize(arrayOfNumbers, sizeOfArray, 8));
+    int newSize = 10;
+    int * pArray = resize(arrayOfNumbers, sizeOfArray, newSize);
+    for(int i = 0; i < newSize; i++) {
+        printf("%d, ", pArray[i]);
+    }
 }
 
 int* resize (int* intArray, int sizeOfArray, int newSize)
 {
-    intArray = (int*) realloc (newSize, sizeof(int));
-    if (newSize > sizeOfArray) {
-        for (int i = sizeOfArray - 1; i < newSize; i++) {
-            intArray[i] = 0;
-        }
+    int* temp = (int*) calloc (newSize, sizeof(int));
+    for (int i = 0; i < sizeOfArray; i++) {
+        temp[i] = intArray[i];
     }
-    return *intArray;
+    free(intArray);
+    return temp;
 }
