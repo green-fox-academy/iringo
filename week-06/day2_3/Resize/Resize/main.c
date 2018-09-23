@@ -25,10 +25,24 @@ int main()
 
 int* resize (int* intArray, int sizeOfArray, int newSize)
 {
+    //Solution 1:
     int* temp = (int*) calloc (newSize, sizeof(int));
     for (int i = 0; i < sizeOfArray; i++) {
         temp[i] = intArray[i];
     }
     free(intArray);
     return temp;
+    
+    /*Solution2:
+     int* copy = (int*) calloc(sizeOfArray, sizeof(int));
+     for (int i = 0; i < sizeOfArray; i++) {
+     copy[i]= intArray[i];
+     }
+     copy = (int*) realloc (copy, newSize * sizeof(int));
+     if (newSize > sizeOfArray) {
+        for (int i = sizeOfArray; i < newSize; i++) {
+            copy[i]= 0;
+        }
+     }
+     return copy;*/
 }
