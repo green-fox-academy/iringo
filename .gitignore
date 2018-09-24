@@ -302,5 +302,7 @@ STM32F746G-DISCO.xml
 *.ld
 .settings/
 #ceedling
+*.project
+*.cproject
 build/
 
