@@ -78,7 +78,7 @@ int main(void) {
 	led1.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOA, &led1);
 
-	__HAL_RCC_GPIOF_CLK_ENABLE();
+	//__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led2;
 	led2.Pin = GPIO_PIN_10;
 	led2.Mode = GPIO_MODE_OUTPUT_PP;
@@ -86,7 +86,7 @@ int main(void) {
 	led2.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOF, &led2);
 
-	__HAL_RCC_GPIOF_CLK_ENABLE();
+	//__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led3;
 	led3.Pin = GPIO_PIN_9;
 	led3.Mode = GPIO_MODE_OUTPUT_PP;
@@ -94,7 +94,7 @@ int main(void) {
 	led3.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOF, &led3);
 
-	__HAL_RCC_GPIOF_CLK_ENABLE();
+	//__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led4;
 	led4.Pin = GPIO_PIN_8;
 	led4.Mode = GPIO_MODE_OUTPUT_PP;
@@ -108,23 +108,46 @@ int main(void) {
 		uint32_t state = BSP_PB_GetState(BUTTON_KEY);
 		if (state == 1 && pushed != 1) {
 			pushed = 1;
-			mod = (mod + 1) % 2;
+			mod = (mod + 1) % 4;
 		} else if (state == 0) {
 			pushed = 0;
 		}
 
 		if (mod == 1) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
+		} else if (mod == 2) {
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_RESET);
+			HAL_Delay(50);
+			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
+			HAL_Delay(50);
+		} else if (mod == 3) {
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
-			HAL_Delay(300);
-
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
-			HAL_Delay(300);
 		} else {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET);
