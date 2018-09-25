@@ -26,6 +26,8 @@ static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
+GPIO_TypeDef* getPin (uint16_t pin);
+void resetPins (uint16_t arrays [], int size);
 int pushed = 0;
 int mod = 0;
 
@@ -59,6 +61,7 @@ int main(void) {
 	/* Configure the System clock to have a frequency of 216 MHz */
 	SystemClock_Config();
 
+
 	/* Add your application code here */
 
 	uart_handle.Init.BaudRate = 115200;
@@ -78,7 +81,7 @@ int main(void) {
 	led1.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOA, &led1);
 
-	//__HAL_RCC_GPIOF_CLK_ENABLE();
+	__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led2;
 	led2.Pin = GPIO_PIN_10;
 	led2.Mode = GPIO_MODE_OUTPUT_PP;
@@ -86,7 +89,7 @@ int main(void) {
 	led2.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOF, &led2);
 
-	//__HAL_RCC_GPIOF_CLK_ENABLE();
+	__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led3;
 	led3.Pin = GPIO_PIN_9;
 	led3.Mode = GPIO_MODE_OUTPUT_PP;
@@ -94,7 +97,7 @@ int main(void) {
 	led3.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOF, &led3);
 
-	//__HAL_RCC_GPIOF_CLK_ENABLE();
+	__HAL_RCC_GPIOF_CLK_ENABLE();
 	GPIO_InitTypeDef led4;
 	led4.Pin = GPIO_PIN_8;
 	led4.Mode = GPIO_MODE_OUTPUT_PP;
@@ -104,16 +107,20 @@ int main(void) {
 
 	BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
+	uint16_t arrays [] = {GPIO_PIN_0, GPIO_PIN_10, GPIO_PIN_9, GPIO_PIN_8};
+	int size = sizeof(arrays) / sizeof(arrays[0]);
+
 	while (1) {
 		uint32_t state = BSP_PB_GetState(BUTTON_KEY);
 		if (state == 1 && pushed != 1) {
 			pushed = 1;
-			mod = (mod + 1) % 4;
+			mod = (mod + 1) % 5;
 		} else if (state == 0) {
 			pushed = 0;
 		}
 
 		if (mod == 1) {
+			resetPins(arrays, size);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
 			HAL_Delay(50);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
@@ -126,7 +133,8 @@ int main(void) {
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
 			HAL_Delay(50);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
-		} else if (mod == 2) {
+		}else if (mod == 2) {
+			resetPins(arrays, size);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
 			HAL_Delay(50);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
@@ -143,22 +151,49 @@ int main(void) {
 			HAL_Delay(50);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
 			HAL_Delay(50);
-		} else if (mod == 3) {
+		}else if (mod == 3) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
+		}else if (mod == 4) {
+			resetPins(arrays, size);
+			HAL_GPIO_WritePin(getPin(arrays[0]), arrays[0], GPIO_PIN_SET);
+			for (int i = 1; i < size; i++) {
+				HAL_GPIO_WritePin(getPin(arrays[i]), arrays[i], GPIO_PIN_SET);
+				HAL_GPIO_WritePin(getPin(arrays[i-1]), arrays[i-1], GPIO_PIN_RESET);
+				HAL_Delay(300);
+			}
+			for (int i = size-1; i > 0 ; i--) {
+				HAL_GPIO_WritePin(getPin(arrays[i]), arrays[i], GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(getPin(arrays[i-1]), arrays[i-1], GPIO_PIN_SET);
+				HAL_Delay(300);
+			}
 		} else {
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_RESET);
+			resetPins(arrays, size);
 		}
-
-
-
 	}
 }
+
+GPIO_TypeDef* getPin (uint16_t pin)
+{
+	 switch (pin) {
+	 	 case GPIO_PIN_0:
+	 		 return GPIOA;
+	 	 default:
+	 		 return GPIOF;
+	 }
+}
+
+void resetPins (uint16_t arrays [], int size)
+{
+	for (int i = 0; i < size; i++) {
+		HAL_GPIO_WritePin(getPin(arrays[i]), arrays[i], GPIO_PIN_RESET);
+	}
+}
+
+
+
 /**
  * @brief  Retargets the C library printf function to the USART.
  * @param  None
