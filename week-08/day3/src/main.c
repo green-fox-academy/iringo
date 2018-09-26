@@ -84,24 +84,31 @@ int main(void) {
 	//char text[] = "hello\r\n";
 	//HAL_UART_Transmit(&uart_handle, text, strlen(text), 500);
 
-	char ch;
-	char on = 'o';
-	char off = 'f';
-	char text[10];
+	//char ch;
+	char text[4] = {0};
 	setvbuf(stdin, NULL, _IONBF, 0);
 
 	while (1) {
 
 		HAL_UART_Receive(&uart_handle, text, 3, 500);
-
-		if (strcmp(on, ch) == 0) {
+		if (strcmp(text, "on") == 0) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
-		} else if (strcmp(off, ch) == 0) {
+			memset(text, '\0', 4);
+		} else if (strcmp(text, "off") == 0) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+			memset(text, '\0', 4);
+		} else if (strcmp(text, "\0\0\0\0") != 0) {
+			for (int i = 0; i < 3; i++) {
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+				HAL_Delay(300);
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+				HAL_Delay(300);
+			}
+			memset(text, '\0', 4);
 		}
 
-		ch = getchar();
-		printf("%c", ch);
+		//ch = getchar();
+		//printf("%c", ch);
 	}
 }
 /**
