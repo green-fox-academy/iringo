@@ -101,6 +101,7 @@ int main(void) {
 	int startGameCounter = 0;
 	double counter = 0;
 	int finalSum = 0;
+	double average = 0;
 
 	while (1) {
 		uint32_t state = BSP_PB_GetState(BUTTON_KEY);
@@ -140,8 +141,14 @@ int main(void) {
 			if (counter != 5) {
 				mod = 0;
 			} else {
-				double average = finalSum / (double) counter;
-				printf ("Your average reaction time is: %.2f\n", average);
+				printf("Final sum: %d\n", finalSum);
+				printf("Counter: %d\n", counter);
+				printf ("Your average reaction time is: %.2f\n", finalSum/counter);
+				counter = -1;
+				finalSum = 0;
+				average = 0;
+				endTime = 0;
+				startTime = 0;
 			}
 		}
 
