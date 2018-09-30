@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F040CA7F214A94C200566747 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F040CA7E214A94C200566747 /* main.c */; };
+		F0097DA12160AEE900C30676 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F0097DA02160AEE900C30676 /* main.c */; };
+		F0097DA92160AF4300C30676 /* Bus.c in Sources */ = {isa = PBXBuildFile; fileRef = F0097DA82160AF4300C30676 /* Bus.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F040CA79214A94C200566747 /* CopyFiles */ = {
+		F0097D9B2160AEE900C30676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F040CA7B214A94C200566747 /* MergeArrays */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MergeArrays; sourceTree = BUILT_PRODUCTS_DIR; };
-		F040CA7E214A94C200566747 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0097D9D2160AEE900C30676 /* Bus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bus; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0097DA02160AEE900C30676 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F0097DA72160AF4300C30676 /* Bus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bus.h; sourceTree = "<group>"; };
+		F0097DA82160AF4300C30676 /* Bus.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Bus.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F040CA78214A94C200566747 /* Frameworks */ = {
+		F0097D9A2160AEE900C30676 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,94 +41,97 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F040CA72214A94C200566747 = {
+		F0097D942160AEE900C30676 = {
 			isa = PBXGroup;
 			children = (
-				F040CA7D214A94C200566747 /* MergeArrays */,
-				F040CA7C214A94C200566747 /* Products */,
+				F0097D9F2160AEE900C30676 /* Bus */,
+				F0097D9E2160AEE900C30676 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F040CA7C214A94C200566747 /* Products */ = {
+		F0097D9E2160AEE900C30676 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F040CA7B214A94C200566747 /* MergeArrays */,
+				F0097D9D2160AEE900C30676 /* Bus */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F040CA7D214A94C200566747 /* MergeArrays */ = {
+		F0097D9F2160AEE900C30676 /* Bus */ = {
 			isa = PBXGroup;
 			children = (
-				F040CA7E214A94C200566747 /* main.c */,
+				F0097DA02160AEE900C30676 /* main.c */,
+				F0097DA72160AF4300C30676 /* Bus.h */,
+				F0097DA82160AF4300C30676 /* Bus.c */,
 			);
-			path = MergeArrays;
+			path = Bus;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F040CA7A214A94C200566747 /* MergeArrays */ = {
+		F0097D9C2160AEE900C30676 /* Bus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F040CA82214A94C200566747 /* Build configuration list for PBXNativeTarget "MergeArrays" */;
+			buildConfigurationList = F0097DA42160AEE900C30676 /* Build configuration list for PBXNativeTarget "Bus" */;
 			buildPhases = (
-				F040CA77214A94C200566747 /* Sources */,
-				F040CA78214A94C200566747 /* Frameworks */,
-				F040CA79214A94C200566747 /* CopyFiles */,
+				F0097D992160AEE900C30676 /* Sources */,
+				F0097D9A2160AEE900C30676 /* Frameworks */,
+				F0097D9B2160AEE900C30676 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MergeArrays;
-			productName = MergeArrays;
-			productReference = F040CA7B214A94C200566747 /* MergeArrays */;
+			name = Bus;
+			productName = Bus;
+			productReference = F0097D9D2160AEE900C30676 /* Bus */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F040CA73214A94C200566747 /* Project object */ = {
+		F0097D952160AEE900C30676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Balázs Iringó";
 				TargetAttributes = {
-					F040CA7A214A94C200566747 = {
-						CreatedOnToolsVersion = 9.4.1;
+					F0097D9C2160AEE900C30676 = {
+						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = F040CA76214A94C200566747 /* Build configuration list for PBXProject "MergeArrays" */;
+			buildConfigurationList = F0097D982160AEE900C30676 /* Build configuration list for PBXProject "Bus" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = F040CA72214A94C200566747;
-			productRefGroup = F040CA7C214A94C200566747 /* Products */;
+			mainGroup = F0097D942160AEE900C30676;
+			productRefGroup = F0097D9E2160AEE900C30676 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F040CA7A214A94C200566747 /* MergeArrays */,
+				F0097D9C2160AEE900C30676 /* Bus */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F040CA77214A94C200566747 /* Sources */ = {
+		F0097D992160AEE900C30676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F040CA7F214A94C200566747 /* main.c in Sources */,
+				F0097DA92160AF4300C30676 /* Bus.c in Sources */,
+				F0097DA12160AEE900C30676 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F040CA80214A94C200566747 /* Debug */ = {
+		F0097DA22160AEE900C30676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -177,13 +183,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		F040CA81214A94C200566747 /* Release */ = {
+		F0097DA32160AEE900C30676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -230,11 +237,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		F040CA83214A94C200566747 /* Debug */ = {
+		F0097DA52160AEE900C30676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -242,7 +250,7 @@
 			};
 			name = Debug;
 		};
-		F040CA84214A94C200566747 /* Release */ = {
+		F0097DA62160AEE900C30676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -253,25 +261,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F040CA76214A94C200566747 /* Build configuration list for PBXProject "MergeArrays" */ = {
+		F0097D982160AEE900C30676 /* Build configuration list for PBXProject "Bus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F040CA80214A94C200566747 /* Debug */,
-				F040CA81214A94C200566747 /* Release */,
+				F0097DA22160AEE900C30676 /* Debug */,
+				F0097DA32160AEE900C30676 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F040CA82214A94C200566747 /* Build configuration list for PBXNativeTarget "MergeArrays" */ = {
+		F0097DA42160AEE900C30676 /* Build configuration list for PBXNativeTarget "Bus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F040CA83214A94C200566747 /* Debug */,
-				F040CA84214A94C200566747 /* Release */,
+				F0097DA52160AEE900C30676 /* Debug */,
+				F0097DA62160AEE900C30676 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F040CA73214A94C200566747 /* Project object */;
+	rootObject = F0097D952160AEE900C30676 /* Project object */;
 }
