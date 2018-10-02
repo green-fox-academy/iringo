@@ -11,6 +11,8 @@ UART_HandleTypeDef uart_handle;
 GPIO_InitTypeDef led;
 TIM_HandleTypeDef TimHandle;
 TIM_OC_InitTypeDef sConfig;
+GPIO_InitTypeDef conf;
+volatile int state = 0;
 
 #undef __GNUC__
 
@@ -69,40 +71,62 @@ int main(void) {
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
     GPIO_InitTypeDef led_Red;
-    led_Red.Pin = GPIO_PIN_8;
+    led_Red.Pin = GPIO_PIN_15;
     led_Red.Mode = GPIO_MODE_AF_PP;
     led_Red.Pull = GPIO_PULLDOWN;
     led_Red.Speed = GPIO_SPEED_HIGH;
-    led_Red.Alternate = GPIO_AF1_TIM1;
+    led_Red.Alternate = GPIO_AF1_TIM2;
     HAL_GPIO_Init(GPIOA, &led_Red);
 
-    __HAL_RCC_TIM1_CLK_ENABLE();
-    TimHandle.Instance = TIM1;
+    __HAL_RCC_TIM2_CLK_ENABLE();
+    TimHandle.Instance = TIM2;
     TimHandle.Init.Period = 100;
     TimHandle.Init.Prescaler = 1;
     TimHandle.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     TimHandle.Init.CounterMode = TIM_COUNTERMODE_UP;
 
     BSP_COM_Init(COM1, &uart_handle);
+    BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_GPIO);
+
 
     HAL_TIM_PWM_Init(&TimHandle);
-
     sConfig.OCMode = TIM_OCMODE_PWM1;
     sConfig.Pulse = 0;
     HAL_TIM_PWM_ConfigChannel(&TimHandle, &sConfig, TIM_CHANNEL_1);
-
-    HAL_TIM_Base_Start(&TimHandle);
     HAL_TIM_PWM_Start(&TimHandle, TIM_CHANNEL_1);
-    BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_GPIO);
+    HAL_TIM_Base_Start(&TimHandle);
+
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+    conf.Pin = GPIO_PIN_11;
+    conf.Pull = GPIO_NOPULL;
+    conf.Speed = GPIO_SPEED_FAST;
+    conf.Mode = GPIO_MODE_IT_RISING;
+    HAL_GPIO_Init(GPIOI, &conf);
+    HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
+    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
     while (1) {
-        if (BSP_PB_GetState(BUTTON_WAKEUP)) {
-            __HAL_TIM_SET_COMPARE(&TimHandle, TIM_CHANNEL_1, 20);
-        } else {
-            __HAL_TIM_SET_COMPARE(&TimHandle, TIM_CHANNEL_1, 0);
-        }
+
     }
 }
+
+// Turning on and off with GPIO interrupts
+void EXTI15_10_IRQHandler()
+{
+    HAL_GPIO_EXTI_IRQHandler(conf.Pin);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (state == 0) {
+        __HAL_TIM_SET_COMPARE(&TimHandle, TIM_CHANNEL_1, 20);
+        state++;
+    } else if (state == 1) {
+        __HAL_TIM_SET_COMPARE(&TimHandle, TIM_CHANNEL_1, 0);
+        state--;
+    }
+}
+
 /**
  * @brief  Retargets the C library printf function to the USART.
  * @param  None
