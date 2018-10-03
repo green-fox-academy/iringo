@@ -26,18 +26,21 @@ char* convertToWord (char* filename);
 
 int main()
 {
-    convertToWord("text.txt");
+    char* converted_word = convertToWord("text.txt");
+    printf("%s\n", converted_word);
+    free (converted_word);
+    
 }
 
 char* convertToWord (char* filename)
 {
     FILE *fPointer = fopen("text.txt", "r");
     FILE *fHPointer = fopen("me_the_hacker.txt", "a");
-    int binaryArray[1000];
+    char* binaryArray = (char*) calloc (countNumberOfLines(filename), sizeof(char));
     if (fPointer == NULL) {
         printf("Could not open the file!\n");
     } else {
-        int buffer[1000];
+        char buffer[1000];
         char* ptr;
         int sizeOfArray = countNumberOfLines("text.txt");
         int i = 0;
@@ -47,7 +50,6 @@ char* convertToWord (char* filename)
         }
         for(int i = 0; i < sizeOfArray; i++) {
             fprintf (fHPointer, "%c", binaryArray[i]);
-            printf("%c", binaryArray[i]);
         }
         
     }
@@ -58,7 +60,7 @@ char* convertToWord (char* filename)
 
 int countNumberOfLines (char* filename)
 {
-    int counter = 0;
+    int counter = 1;
     char ch;
     FILE *fpointer = fopen(filename, "r");
     while((ch = fgetc(fpointer)) !=  EOF) {
