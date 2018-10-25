@@ -1,20 +1,20 @@
 #include "stm32f7xx.h"
 #include "stm32746g_discovery.h"
 
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef uart_handle;
-
-
 GPIO_InitTypeDef vent_IC;
 TIM_HandleTypeDef timer_pwm_vent;
 TIM_HandleTypeDef rpm_timer;
 TIM_IC_InitTypeDef rpm;
 TIM_OC_InitTypeDef sConfig;
 GPIO_InitTypeDef ventilator;
+GPIO_InitTypeDef adc_gpio;
+ADC_ChannelConfTypeDef adcChannel;
+ADC_HandleTypeDef g_AdcHandle;
 
 volatile char c[1];
 char buffer[100];
@@ -29,11 +29,10 @@ float P = 0.05;
 float I = 0.01;
 int ctrler_out_min = 0;
 int ctrler_out_max = 5100;
-volatile int asd = 5100;
+volatile int desired_rotation = 5100;
 int integral = 0;
-
-
 float get_freq();
+uint32_t Timeout;
 
 //#undef __GNUC__
 
@@ -86,11 +85,8 @@ void init_pwm_for_ventilator()
     HAL_TIM_PWM_Start(&timer_pwm_vent, TIM_CHANNEL_1);
 }
 
-
-
 void init_timer_rpm(void)
 {
-
     __HAL_RCC_GPIOA_CLK_ENABLE();
     vent_IC.Pin = GPIO_PIN_15;
     vent_IC.Mode = GPIO_MODE_AF_PP;
@@ -120,6 +116,44 @@ void init_timer_rpm(void)
     HAL_TIM_IC_ConfigChannel(&rpm_timer, &rpm, TIM_CHANNEL_1);
     HAL_TIM_IC_Init(&rpm_timer);
     HAL_TIM_IC_Start_IT(&rpm_timer, TIM_CHANNEL_1);
+}
+
+void adc_init()
+{
+    __GPIOA_CLK_ENABLE();
+    __ADC3_CLK_ENABLE();
+
+    adc_gpio.Pin = GPIO_PIN_0;
+    adc_gpio.Mode = GPIO_MODE_ANALOG;
+    adc_gpio.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOC, &adc_gpio);
+
+    HAL_NVIC_SetPriority(ADC_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(ADC_IRQn);
+
+    g_AdcHandle.Instance = ADC3;
+
+    g_AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
+    g_AdcHandle.Init.Resolution = ADC_RESOLUTION_12B; // 0 - 4096
+    g_AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    g_AdcHandle.Init.ScanConvMode = DISABLE;
+    g_AdcHandle.Init.EOCSelection = DISABLE;
+    g_AdcHandle.Init.ContinuousConvMode = ENABLE;
+    g_AdcHandle.Init.NbrOfConversion = 1;   // ennek utána kell olvasni
+    g_AdcHandle.Init.DiscontinuousConvMode = DISABLE;
+    g_AdcHandle.Init.NbrOfDiscConversion = 0;
+    //g_AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC1; // TImer trigerelje a mérést
+    //g_AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+    g_AdcHandle.Init.DMAContinuousRequests = DISABLE;
+
+    HAL_ADC_Init(&g_AdcHandle);
+
+    adcChannel.Channel = ADC_CHANNEL_0;
+    adcChannel.Rank = 1;
+    adcChannel.SamplingTime = ADC_SAMPLETIME_480CYCLES;
+    adcChannel.Offset = 0;
+
+    HAL_ADC_ConfigChannel(&g_AdcHandle, &adcChannel);
 
 }
 
@@ -165,13 +199,10 @@ int main(void) {
     init_timer_rpm();
 
     while (1) {
-        //printf("%d\n", rotation);
-
         int process_variable = rotation;
-        int error = asd - process_variable;
+        int error = desired_rotation - process_variable;
         integral += error;
         int ctrler_out = P * error + I * integral;
-
 
         if (ctrler_out < ctrler_out_min){
             ctrler_out = ctrler_out_min;
@@ -183,12 +214,22 @@ int main(void) {
         }
         ctrler_out = (float) ctrler_out / 5100 * 100;
         TIM3->CCR1 = ctrler_out;
-        printf("%d\n", ctrler_out);
-        printf("rotation:%d \n", rotation);
+        //printf("Controller out: %d\n", ctrler_out);
+        //printf("rotation:%d \n", rotation);
         HAL_Delay(10);
 
+        printf("%d\n", get_adc_value());
 
     }
+}
+
+int get_adc_value()
+{
+    adc_init();
+    HAL_ADC_Start(&g_AdcHandle);
+    HAL_ADC_PollForConversion(&g_AdcHandle, Timeout);
+    int adc_number = HAL_ADC_GetValue(&g_AdcHandle);
+    return adc_number;
 }
 
 void TIM2_IRQHandler()
@@ -235,8 +276,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         buffer[counter] = '\0';
         int duty_cycle = atoi(buffer);
         if (duty_cycle > 0 && duty_cycle <= 100) {
-            //TIM3->CCR1 = duty_cycle;
-            asd = duty_cycle / (float) 100 * 5100;
+            desired_rotation = duty_cycle / (float) 100 * 5100;
         }
         counter = 0;
     } else {
@@ -244,8 +284,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     }
     HAL_UART_Receive_IT(&uart_handle, (uint8_t*)c, 1);
 }
-
-
 
 /**
  * @brief  Retargets the C library printf function to the USART.
